@@ -1,0 +1,1 @@
+if (matriz[i][j] == matriz[0][j]) {
