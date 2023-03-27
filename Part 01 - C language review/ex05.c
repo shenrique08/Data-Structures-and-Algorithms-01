@@ -8,7 +8,7 @@ int main()
     printf("\nDigite a quantidade de numeros inteiros que deseja informar: ");
     scanf("%d", &qtd_numeros);
 
-    numeros = calloc(qtd_numeros, sizeof(int));
+    numeros = (int *) calloc(qtd_numeros, sizeof(int));
 
     for (int i = 0; i < qtd_numeros; i ++) {
         printf("Informe o [%do] valor (Digite '10' para encerrar): ", i + 1);

@@ -33,10 +33,9 @@ int main()
     }
     
     // preenchendo o vetor com números pseudoaleatorios  
-    for (int i = 0; i < tamanho; i++) {
+    for (int i = 0; i < tamanho; i++) 
         vetor[i] = (rand() % 10) + 1;
-    }
-
+    
     printf("\nVALORES GERADOS:\n");
     for (int i = 0; i < tamanho; i++)
         printf("[%d] ", vetor[i]);

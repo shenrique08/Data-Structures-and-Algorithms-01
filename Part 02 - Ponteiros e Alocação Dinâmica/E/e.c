@@ -16,7 +16,7 @@ typedef struct
 int main() 
 {
     int opcao, numClientes = 0, i, j, pos;
-    Cliente *clientes = (Cliente*) malloc(MAX_CLIENTES * sizeof(Cliente));
+    Cliente *clientes = (Cliente*) malloc(MAX_CLIENTES * sizeof(*clientes));
 
     do {
         printf("Escolha uma opcao:\n");

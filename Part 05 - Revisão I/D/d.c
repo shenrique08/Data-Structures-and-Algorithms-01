@@ -15,9 +15,14 @@ int main()
         qtd_caracteres += 1; 
         
     // criando um vetor de char com a quantidade dos caracteres ditigados
-    char c_digitados[qtd_caracteres];     
+    char *c_digitados = (char *) calloc(qtd_caracteres, sizeof(char));     
 
-    // fazendo a cópia dos caractéres digitados
+    if (c_digitados == NULL) {
+        printf("Erro ao alocar memoria");
+        exit(1);
+    }
+
+    // realizando a cópia dos caractéres digitados
     for (int i = 0; i < qtd_caracteres; i++) {
             c_digitados[i] = texto[i];    
 

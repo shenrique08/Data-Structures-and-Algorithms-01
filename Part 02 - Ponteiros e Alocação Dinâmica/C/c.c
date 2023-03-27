@@ -8,18 +8,18 @@ int main()
     int i, j;
     srand(time(NULL));
 
-    matriz1 = calloc(3, sizeof(int*)); // alocando o vetor linha
+    matriz1 = (int **) calloc(3, sizeof(int*)); // alocando o vetor linha
     for (i = 0; i < 3; i++)
-        matriz1[i] = calloc(3, sizeof(int)); // alocando o vetor coluna
+        matriz1[i] = (int *) calloc(3, sizeof(int)); // alocando o vetor coluna
 
     if (matriz1 == NULL) {
         printf("Falha ao alocar a matriz1!\n");
         exit(1);
     }
 
-    matriz2 = calloc(3, sizeof(int *)); // alocando o vetor linha
+    matriz2 = (int **) calloc(3, sizeof(int *)); // alocando o vetor linha
     for (i = 0; i < 3; i++)
-        matriz2[i] = calloc(3, sizeof(int)); // alocando o vetor coluna
+        matriz2[i] = (int *) calloc(3, sizeof(int)); // alocando o vetor coluna
 
     if (matriz2 == NULL) {
         printf("Falha ao alocar a matriz2!\n");
@@ -37,9 +37,9 @@ int main()
             matriz2[i][j] = rand() % 100;
 
 
-    matriz_soma = calloc(3, sizeof(int*)); // alocando o vetor linha da matriz soma
+    matriz_soma = (int **) calloc(3, sizeof(int*)); // alocando o vetor linha da matriz soma
     for (i = 0; i < 3; i++)
-        matriz_soma[i] = calloc(3, sizeof(int)); // alocando o vetor coluna da matriz soma
+        matriz_soma[i] = (int *) calloc(3, sizeof(int)); // alocando o vetor coluna da matriz soma
     
     if (matriz_soma == NULL) {
         printf("Falha ao alocar a matriz soma!\n");
@@ -91,7 +91,5 @@ int main()
     free(matriz_soma);
 
     
-
-
     return 0;
 }

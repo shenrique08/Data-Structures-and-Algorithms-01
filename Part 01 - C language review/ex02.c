@@ -28,7 +28,7 @@ int main()
             printf("%d * %d = %d\n", num1, num2, (num1 * num2));
             break;
         case '/':
-            printf("%d // %d = %d\n", num1, num2, (num1 / num2));
+            printf("%d // %d = %.3f\n", num1, num2, (num1 / (float)num2));
             break;
         default:
             printf("Operando invalido!!!\n");

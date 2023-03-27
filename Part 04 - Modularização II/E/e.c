@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int* retorna_vetor_alocado (int tam_vetor, int num_preencher)
+int *retorna_vetor_alocado (int tam_vetor, int num_preencher)
 {
     int *vetor = (int *) calloc(tam_vetor, sizeof(int));
 

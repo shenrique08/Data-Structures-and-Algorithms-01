@@ -18,7 +18,7 @@ int main()
     scanf("%d", &qtd_cadastro);
     fflush(stdin);
 
-    Livros *livros = calloc(qtd_cadastro, sizeof(*livros));
+    Livros *livros = (Livros *) calloc(qtd_cadastro, sizeof(*livros));
 
     if (livros == NULL) {
         printf("Falha ao alocar memoria!\n");
@@ -49,5 +49,7 @@ int main()
 
     printf("\nA media do numero de paginas por livro eh %.3f\n\n", media_paginas);
 
+    free(livros);
+    
     return 0;
 }

@@ -1,4 +1,4 @@
-/*#include <stdio.h>
+#include <stdio.h>
 
 int divisao (int a, int b, int *quociente, int *resto)
 {
@@ -32,18 +32,4 @@ int main()
     }
 
     return 0;
-} */
-
-#include <stdio.h>
-int main() {
-   int *p;
-   char *c;
-   double *d;
-   float *f;
-
-   printf("O tamanho do ponteiro e %lu bytes\n", sizeof(p));
-   printf("O tamanho do ponteiro e %lu bytes\n", sizeof(c));
-   printf("O tamanho do ponteiro e %lu bytes\n", sizeof(d));
-   printf("O tamanho do ponteiro e %lu bytes\n", sizeof(f));
-   return 0;
-}
+} 
