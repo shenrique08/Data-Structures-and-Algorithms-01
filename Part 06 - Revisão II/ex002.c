@@ -10,6 +10,11 @@ int *del_value_array (int *array, int size_array, int pos_delete)
     return array;
 }
 
+void desaloca_vetor (int **v)
+{
+    free(*v);
+    *v = NULL;
+}
 
 int main()
 {
@@ -38,11 +43,11 @@ int main()
     array_main = del_value_array(array_main, size_array_main, pos_value_delete);
     array_main = (int *) realloc(array_main, (size_array_main - 1) * sizeof(int));
 
-    printf("\n\nValues in the array after the deletion:\n");
+    printf("\nValues in the array after the deletion:\n");
     for (int i = 0; i < size_array_main - 1; i++) 
         printf("[%d] ", array_main[i]);
     
-    free(array_main);
+    desaloca_vetor(&array_main);
     
     return 0;
 }
