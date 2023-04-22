@@ -44,9 +44,9 @@ void limpar_lista(Lista *lista)
 
 int lista_vazia(Lista *lista)
 {
-    if (lista == NULL)
+    if (lista == NULL) // se a lista não existe
         return 2;
-    if (lista->inicio == NULL)
+    if (lista->inicio == NULL) // se a lista está vazia
         return 1;
     return 0;
 }
@@ -142,10 +142,10 @@ int remover_inicio(Lista *lista)
     if (lista_vazia(lista) == 1) // a lista existe mas está vazia
         return 1;
 
-    No *noLista = lista->inicio;
-    lista->inicio = noLista->prox;
+    No *noLista = lista->inicio; // criando um nó auxiliar para apontar para o início da lista
+    lista->inicio = noLista->prox;  // o ponteiro do início da lista agora aponta para o próximo nó da lista
 
-    free(noLista);
+    free(noLista); // liberando o noLista, que era o elemento do início
 
     return 0;
 }
