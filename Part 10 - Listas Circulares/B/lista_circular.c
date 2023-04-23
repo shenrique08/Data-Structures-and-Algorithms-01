@@ -276,3 +276,60 @@ int buscar_aluno(Lista_Circular *lista, int matricula, Aluno *aluno)
         return 0;
     }
 }
+
+
+
+
+int remove_pos(Lista_Circular *lista, int pos)
+{
+    if (lista == NULL || lista_vazia(lista) == 1 || pos < 1 || pos > tamanho_lista(lista)) {
+        printf("Erro: posição inválida ou lista vazia!\n");
+        return -1;
+    }
+
+    No *node_atual = lista->inicio;
+    No *node_anterior = NULL;
+    int contador = 1;
+
+    while (contador < pos) {
+        node_anterior = node_atual;
+        node_atual = node_atual->prox;
+        contador++;
+    }
+
+    if (contador == 1) { // se for o primeiro elemento
+        remover_inicio(lista);
+        return 0;
+
+    } else if (node_atual->prox == lista->inicio){ // se for o último elemento
+        remover_fim(lista);
+        return 0;
+    } else { // se for um elemento do meio
+        node_anterior->prox = node_atual->prox;
+        free(node_atual);
+    }
+
+    return 0;
+}
+
+
+
+
+
+int remove_meio(Lista_Circular *lista)
+{
+    if (lista == NULL)
+        return -2;
+    if (lista_vazia(lista) == 1)
+        return -1;
+
+    int tam_lista = tamanho_lista(lista);
+
+    if (tam_lista % 2 == 0) {
+        int pos_remocao = tam_lista / 2; // se o tamanho da lista for 8, por exemplo, a posição de remoção será 4
+        remove_pos(lista, pos_remocao);
+    } else {
+        int pos_remocao = (tam_lista / 2) + 1; // a posição do meio será o quociente da divisão + 1. Exemplo, se for 5 o tamanho da lista, então o quociente da divisão será 2. Logo, a pos_remoção será 2 + 1 = 3
+        remove_pos(lista, pos_remocao);
+    }
+}

@@ -29,7 +29,7 @@ int main()
     imprime(lista);
 
 
-    // inserindo no final
+    // inserindo no final 1
     dados_aluno.matricula = 925347;
     strcpy(dados_aluno.nome, "Gibiao");
     dados_aluno.nota = 56.5;

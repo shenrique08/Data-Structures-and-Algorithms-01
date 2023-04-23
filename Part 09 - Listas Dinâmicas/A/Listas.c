@@ -53,15 +53,24 @@ int lista_vazia(Lista *lista)
 
 
 
+// Função para inserir um nó no início de uma lista encadeada
+// Recebe como parâmetros um ponteiro para a lista e um aluno a ser inserido
 int inserir_no_inicio(Lista *lista, Aluno aluno)
 {
-    // se a lista não existe, retorne 2
+    // Verifica se a lista existe
     if (lista == NULL)
-        return 2;
-    No *no = (No *) malloc(sizeof(No));
+        return 2; 
 
+    // Aloca memória para o novo nó
+    No *no = (No *) malloc(sizeof(No));
+    
+    // Atribui o valor do aluno ao novo nó
     no->valor = aluno;
+
+    // O novo nó aponta para onde o lista->inicio aponta, que é NULL se a lista estiver vazia, ou aponta para o primeiro elemento da lista
     no->prox = lista->inicio;
+
+    // O início da lista agora aponta para no, que passa a ser o primeiro nó da lista
     lista->inicio = no;
 
     return 0;
@@ -69,26 +78,33 @@ int inserir_no_inicio(Lista *lista, Aluno aluno)
 
 
 
+
+
+
 int inserir_no_fim(Lista *lista, Aluno aluno)
 {
+    // Verificar se a lista existe
     if (lista == NULL)
         return 0;
-    if (lista_vazia(lista) == 1)
+
+    // Se a lista estiver vazia, insere no início
+    if (lista_vazia(lista))
         return inserir_no_inicio(lista, aluno);
 
-    No *noLista = lista->inicio;
+    // Encontrar o último nó da lista
+    No *ultimo_no = lista->inicio;
+    while (ultimo_no->prox != NULL)
+        ultimo_no = ultimo_no->prox;
 
-    while (noLista->prox != NULL)
-        noLista = noLista->prox;
-
-    No *no = (No *) calloc(1, sizeof(No));
-
-    no->valor = aluno;
-    no->prox = noLista->prox;
-    noLista->prox = no;
+    // Criar um novo nó e adicionar no final da lista
+    No *novo_no = (No *) calloc(1, sizeof(No));
+    novo_no->valor = aluno;
+    novo_no->prox = NULL;
+    ultimo_no->prox = novo_no;
 
     return 0;
 }
+
 
 
 

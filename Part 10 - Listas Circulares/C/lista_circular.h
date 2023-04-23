@@ -29,3 +29,6 @@ int remover_fim(Lista_Circular *lista);
 int buscar_aluno(Lista_Circular *lista, int matricula, Aluno *aluno);
 
 
+int remove_pos(Lista_Circular *lista, int pos);
+int remove_meio(Lista_Circular *lista);
+int remove_aluno(Lista_Circular *lista, int matricula);

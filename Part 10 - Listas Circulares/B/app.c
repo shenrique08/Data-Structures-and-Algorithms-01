@@ -56,13 +56,13 @@ int main()
     printf("[TAMANHO DA LISTA]: [%d]\n\n", tamanho_lista(lista_circular));
 
     /*=======================================================================================================*/
-
+    /*
     // removendo do início
     remover_inicio(lista_circular);
     printf("\n********** Lista apos a [REMOCAO do INICIO] ********** \n");
     imprime_lista(lista_circular);
 
-    /*
+    
     // removendo do final
     remover_fim(lista_circular);
     printf("\n********** Lista apos a [REMOCAO do FINAL] ********** \n");
@@ -71,12 +71,19 @@ int main()
     // buscando aluno
 
     buscar_aluno(lista_circular, 925347, &dados_aluno);
-    */
+    
 
    
+   remove_pos(lista_circular, 2);
+   printf("\n********** Lista apos a [REMOCAO na posicao 2] ********** \n");
+   imprime_lista(lista_circular);
+   */
 
 
-
+    remove_meio(lista_circular);
+    printf("\n********** Lista apos a [REMOCAO NO MEIO] ********** \n");
+    imprime_lista(lista_circular);
+    
 
     return 0;
 }
