@@ -65,7 +65,7 @@ int tamanho_lista(Lista_Circular *lista)
     do {
         contador += 1;
         noLista = noLista->prox;
-    } while (noLista != lista->inicio);
+    } while (noLista != lista->inicio); // enquanto noLista não chegar ao final da lista, que aponta para o início
 
     return contador;
 }
@@ -127,7 +127,7 @@ int inserir_inicio(Lista_Circular *lista, Aluno aluno)
         novo->prox = novo; 
     }
 
-    // Se a lista não estiver vazia, o ponteiro prox do novo nó é configurado para apontar para o início da lista
+    // Se a lista não estiver vazia, o ponteiro prox do novo nó é configurado para apontar para o nó em que lista->inicio aponta
     // É feita uma busca pelo último elemento da lista, que é aquele cujo ponteiro prox aponta para o início
     // O novo nó é inserido depois desse último nó encontrado
     else {
@@ -168,7 +168,7 @@ int inserir_fim(Lista_Circular *lista, Aluno aluno)
         No *temp = lista->inicio; // inicializo um ponteiro temp que aponta para o início da lista
         while (temp->prox != lista->inicio) // enquanto o ponteiro do prox não apontar para o início da lista (que será seu final)
             temp = temp->prox; // incremento
-        temp->prox = no; // coloca a estrutura de dados criada no último nó
+        temp->prox = no; // coloca a estrutura de dados criada no último nó (o ponteiro temp, que é o último nó, aponta agora para o nó criado)
         no->prox = lista->inicio; // faz com que o ponteiro dessa estrutura de dados aponte para o início da lista
     }
 
@@ -282,35 +282,44 @@ int buscar_aluno(Lista_Circular *lista, int matricula, Aluno *aluno)
 
 int remove_pos(Lista_Circular *lista, int pos)
 {
+    // verifica se a lista é vazia ou a posição é inválida
     if (lista == NULL || lista_vazia(lista) == 1 || pos < 1 || pos > tamanho_lista(lista)) {
         printf("Erro: posição inválida ou lista vazia!\n");
         return -1;
     }
 
+    // inicializa um ponteiro para o nó atual como sendo o início da lista
     No *node_atual = lista->inicio;
+    // inicializa um ponteiro para o nó anterior como sendo nulo
     No *node_anterior = NULL;
+
     int contador = 1;
 
+    // percorre a lista até chegar na posição especificada
     while (contador < pos) {
-        node_anterior = node_atual;
-        node_atual = node_atual->prox;
-        contador++;
+        node_anterior = node_atual; 
+        node_atual = node_atual->prox; 
+        contador++; 
     }
 
-    if (contador == 1) { // se for o primeiro elemento
+    // se a posição for a primeira, chama a função "remover_inicio" da lista circular e retorna 0
+    if (contador == 1) {
         remover_inicio(lista);
         return 0;
 
-    } else if (node_atual->prox == lista->inicio){ // se for o último elemento
+    // se a posição for a última, chama a função "remover_fim" da lista circular e retorna 0
+    } else if (node_atual->prox == lista->inicio){
         remover_fim(lista);
         return 0;
-    } else { // se for um elemento do meio
+    // se a posição for uma posição intermediária, o nó anterior aponta para o próximo nó e o nó atual é liberado da memória
+    } else {
         node_anterior->prox = node_atual->prox;
         free(node_atual);
     }
 
-    return 0;
+    return 0; // retorna 0 indicando que a remoção foi bem sucedida
 }
+
 
 
 
