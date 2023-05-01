@@ -17,13 +17,14 @@ int main()
         printf("(3) -> Listar alunos cadastrados\n");
         printf("(4) -> Mostrar dados do aluno com maior nota\n");
         printf("(5) -> Remover todos os alunos\n");
-        printf("(6) -> Sair\n\n");
+        printf("(6) -> Trocar alunos de posicao\n");
+        printf("(7) -> Sair\n\n");
 
         printf("Digite uma opcao: ");
         scanf("%c", &operando);
         getchar();
 
-        if (operando == '6') {
+        if (operando == '7') {
             printf("\nPrograma encerrado!\n\n");
             break;
         }
@@ -84,6 +85,15 @@ int main()
             case '5':
                 remover_alunos(lista_dupla);
                 break;
+            case '6':;
+                int pos_aluno1, pos_aluno2;
+                printf("Digite as duas posicoes que deseja realizar a troca: ");
+                scanf("%d %d", &pos_aluno1, &pos_aluno2);
+                fflush(stdin);
+                troca_aluno(lista_dupla, pos_aluno1, pos_aluno2);
+                printf("\n========== LISTA APOS TROCA DE ALUNOS ==========\n\n");
+                imprime(lista_dupla);
+                break;
             default:
                 printf("\nErro!!! Digite uma opcao valida.\n\n");
                 break;
@@ -92,7 +102,9 @@ int main()
 
 
 
-    } while (operando != '6');
+    } while (operando != '7');
+
+
 
 
     return 0;

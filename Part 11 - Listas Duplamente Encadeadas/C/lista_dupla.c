@@ -441,3 +441,138 @@ int aluno_maior_nota(Lista_dupla *lista)
         return 0;
     }
 }
+
+
+
+
+
+int troca_aluno(Lista_dupla *lista, int pos1, int pos2)
+{
+    // Verifica se a lista existe
+    if (lista == NULL) {
+        fprintf(stderr, "\nA lista nao existe!!!\n\n");
+        exit(EXIT_FAILURE);
+    }
+    
+    // Verifica se a lista está vazia
+    if (lista->inicio == NULL) {
+        fprintf(stderr, "\nA lista esta vazia!!!\n\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (tam_lista(lista) == 1) {
+        fprintf(stderr, "\nA tem apenas 1 elemento!!!\n\n");
+        exit(EXIT_FAILURE);
+    }
+
+    No *no1 = lista->inicio;
+    No *no2 = lista->inicio;
+    int i = 1;
+
+    // percorrendo até encontrar o aluno de posição 1
+    while ((i < pos1) && (no1->prox != NULL)) {
+        no1 = no1->prox;
+        i++;
+    } // neste momento, no1 está no elemento de posição 1
+
+    i = 1;
+    // percorrendo até encontrar o aluno de posição 2
+    while ((i < pos2) && (no2->prox != NULL)) {
+        no2 = no2->prox;
+        i++;
+    } // neste momento, no2 está no elemento de posição 1
+
+    // agora, iremos realizar a troca
+    Aluno temp;
+    temp = no1->dados;
+    no1->dados = no2->dados;
+    no2->dados = temp;
+
+    return 0;
+}
+
+
+
+
+int conta_aluno(Lista_dupla *lista, int matricula)
+{
+    // Verifica se a lista existe
+    if (lista == NULL) {
+        fprintf(stderr, "\nA lista nao existe!!!\n\n");
+        exit(EXIT_FAILURE);
+    }
+    
+    // Verifica se a lista está vazia
+    if (lista->inicio == NULL) {
+        fprintf(stderr, "\nA lista esta vazia!!!\n\n");
+        exit(EXIT_FAILURE);
+    }
+
+
+    No *no_aux = lista->inicio;
+    int qtd = 0;
+    // percorrendo a lista até encontrar o aluno daquela matrícula
+    while ((no_aux != NULL) && (no_aux->dados.matricula != matricula)) {
+        no_aux = no_aux->prox;
+        qtd += 1;
+    }
+    
+    return qtd;
+}
+
+
+
+
+int listas_iguais(Lista_dupla *lista1, Lista_dupla *lista2)
+{
+    // Verifica se as listas foram inicializadas corretamente
+    if (lista1 == NULL || lista2 == NULL) {
+        fprintf(stderr, "\nAs listas nao existem!!!\n\n");
+        return -1; 
+    }
+    
+    // Verifica se as listas estão vazias
+    if (lista1->inicio == NULL || lista2->inicio == NULL) {
+        fprintf(stderr, "\nAs listas estao vazias!!!\n\n");
+        return -1;
+    }
+
+    // Verifica se as listas têm tamanhos diferentes
+    if (tam_lista(lista1) != tam_lista(lista2)) {
+        fprintf(stderr, "\nAs listas nao sao iguais!!!\n\n");
+        return 1;
+    }
+
+    // Inicializa um ponteiro para percorrer a lista1
+    No *no_aux1 = lista1->inicio;
+    int qtd_iguais = 0;
+
+    // Percorre a lista1
+    while (no_aux1 != NULL) {
+        // Inicializa um ponteiro para percorrer a lista2
+        No *no_aux2 = lista2->inicio;
+        int found_equal = 0;
+
+        // Percorre a lista2 para verificar se algum elemento é igual ao atual da lista1
+        while (no_aux2 != NULL) {
+            if (no_aux1->dados.matricula == no_aux2->dados.matricula) {
+                found_equal = 1;
+                break;
+            }
+            no_aux2 = no_aux2->prox;
+        }
+
+        // Se nenhum elemento igual foi encontrado na lista2, as listas não são iguais
+        if (!found_equal) {
+            printf("\nAs listas NAO SAO IGUAIS, ou seja, nao possuem os mesmos elementos!!!\n\n");
+            return 1;
+        }
+
+        // Move para o próximo elemento da lista1
+        no_aux1 = no_aux1->prox;
+    }
+
+    // Se chegou até aqui, todas as comparações foram bem-sucedidas e as listas são iguais
+    printf("\nAs listas SAO IGUAIS, ou seja, possuem os mesmos elementos!!!\n\n");
+    return 0;
+}

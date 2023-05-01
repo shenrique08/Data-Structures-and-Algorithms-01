@@ -441,3 +441,52 @@ int aluno_maior_nota(Lista_dupla *lista)
         return 0;
     }
 }
+
+
+
+
+
+int troca_aluno(Lista_dupla *lista, int pos1, int pos2)
+{
+    // Verifica se a lista existe
+    if (lista == NULL) {
+        fprintf(stderr, "\nA lista nao existe!!!\n\n");
+        exit(EXIT_FAILURE);
+    }
+    
+    // Verifica se a lista está vazia
+    if (lista->inicio == NULL) {
+        fprintf(stderr, "\nA lista esta vazia!!!\n\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (tam_lista(lista) == 1) {
+        fprintf(stderr, "\nA tem apenas 1 elemento!!!\n\n");
+        exit(EXIT_FAILURE);
+    }
+
+    No *no1 = lista->inicio;
+    No *no2 = lista->inicio;
+    int i = 1;
+
+    // percorrendo até encontrar o aluno de posição 1
+    while ((i < pos1) && (no1->prox != NULL)) {
+        no1 = no1->prox;
+        i++;
+    } // neste momento, no1 está no elemento de posição 1
+
+    i = 1;
+    // percorrendo até encontrar o aluno de posição 2
+    while ((i < pos2) && (no2->prox != NULL)) {
+        no2 = no2->prox;
+        i++;
+    } // neste momento, no2 está no elemento de posição 1
+
+    // agora, iremos realizar a troca
+    Aluno temp;
+    temp = no1->dados;
+    no1->dados = no2->dados;
+    no2->dados = temp;
+
+    return 0;
+}

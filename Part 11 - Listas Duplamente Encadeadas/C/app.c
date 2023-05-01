@@ -7,7 +7,9 @@
 int main()
 {
     Lista_dupla *lista_dupla = criar_lista();
+    Lista_dupla *lista_dupla2 = criar_lista();
     Aluno dados_aluno;
+    Aluno dados_aluno2;
     char operando;
 
     do {
@@ -17,20 +19,22 @@ int main()
         printf("(3) -> Listar alunos cadastrados\n");
         printf("(4) -> Mostrar dados do aluno com maior nota\n");
         printf("(5) -> Remover todos os alunos\n");
-        printf("(6) -> Sair\n\n");
+        printf("(6) -> Trocar alunos de posicao\n");
+        printf("(7) -> Verificar se as listas contem os mesmos alunos: \n");
+        printf("(8) -> Sair\n\n");
 
         printf("Digite uma opcao: ");
         scanf("%c", &operando);
         getchar();
 
-        if (operando == '6') {
+        if (operando == '8') {
             printf("\nPrograma encerrado!\n\n");
             break;
         }
         switch (operando)
         {
             case '1':
-                
+                // ================================================= INSERCAO NA LISTA 1 ==================================================
                 strcpy(dados_aluno.nome, "Bazooka");
                 dados_aluno.matricula = 32345;
                 dados_aluno.nota = 67.3;
@@ -48,18 +52,32 @@ int main()
                 dados_aluno.nota = 39.8;
 
                 insere_final(lista_dupla, dados_aluno);
-                printf("\n================== LISTA DE ALUNOS CADASTRADOS PREVIAMENTE ====================\n\n");
+                printf("\n================== [LISTA 1] DE ALUNOS CADASTRADOS ====================\n\n");
                 imprime(lista_dupla);
 
                 
-                strcpy(dados_aluno.nome, "Capatais");
-                dados_aluno.matricula = 46543;
-                dados_aluno.nota = 17.8;
+                // ================================================= INSERCAO NA LISTA 2 ==================================================
 
-                insere_ordenado(lista_dupla, dados_aluno);
-                printf("\n=============== LISTA DE ALUNOS APOS CADASTRO DE 'CATATAIS' DE FORMA ORDENADA ===============================\n");
-                imprime(lista_dupla);
+                strcpy(dados_aluno2.nome, "Bazooka");
+                dados_aluno2.matricula = 32345;
+                dados_aluno2.nota = 67.3;
+
+                insere_inicio(lista_dupla2, dados_aluno2);   
+
+                strcpy(dados_aluno2.nome, "Lazaro");
+                dados_aluno2.matricula = 53456;
+                dados_aluno2.nota = 87.1;
+
+                insere_final(lista_dupla2, dados_aluno2);
                 
+                strcpy(dados_aluno2.nome, "Geova");
+                dados_aluno2.matricula = 64567;
+                dados_aluno2.nota = 39.8;
+
+                insere_final(lista_dupla2, dados_aluno2);
+                printf("\n\n======================== [LISTA 2] DE ALUNOS ===============================\n\n");
+                imprime(lista_dupla2);
+
                 break;
 
             case '2':;
@@ -84,6 +102,19 @@ int main()
             case '5':
                 remover_alunos(lista_dupla);
                 break;
+            case '6':;
+                int pos_aluno1, pos_aluno2;
+                printf("Digite as duas posicoes que deseja realizar a troca: ");
+                scanf("%d %d", &pos_aluno1, &pos_aluno2);
+                fflush(stdin);
+                troca_aluno(lista_dupla, pos_aluno1, pos_aluno2);
+                printf("\n========== LISTA APOS TROCA DE ALUNOS ==========\n\n");
+                imprime(lista_dupla);
+                break;
+
+            case '7':
+                listas_iguais(lista_dupla, lista_dupla2);
+                break;
             default:
                 printf("\nErro!!! Digite uma opcao valida.\n\n");
                 break;
@@ -92,7 +123,9 @@ int main()
 
 
 
-    } while (operando != '6');
+    } while (operando != '8');
+
+
 
 
     return 0;
