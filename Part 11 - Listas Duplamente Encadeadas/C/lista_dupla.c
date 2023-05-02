@@ -229,7 +229,7 @@ int insere_ordenado(Lista_dupla *lista, Aluno aluno)
 
     inserir_pos(lista, novo_aluno->dados, posicao);
 
-    
+    return 0;
 }
 
 
@@ -301,6 +301,8 @@ int remove_final(Lista_dupla *lista)
         no_aux->ant->prox = NULL; // o penúltimo nó agora apontará para NULL
     
     free(no_aux); // Libera a memória alocada para o último nó removido
+
+    return 0;
 }
 
 
@@ -512,9 +514,12 @@ int conta_aluno(Lista_dupla *lista, int matricula)
     No *no_aux = lista->inicio;
     int qtd = 0;
     // percorrendo a lista até encontrar o aluno daquela matrícula
-    while ((no_aux != NULL) && (no_aux->dados.matricula != matricula)) {
+    while ((no_aux != NULL)) {
+        if (no_aux->dados.matricula == matricula) {
+            qtd += 1;
+        }
         no_aux = no_aux->prox;
-        qtd += 1;
+        
     }
     
     return qtd;
@@ -545,7 +550,6 @@ int listas_iguais(Lista_dupla *lista1, Lista_dupla *lista2)
 
     // Inicializa um ponteiro para percorrer a lista1
     No *no_aux1 = lista1->inicio;
-    int qtd_iguais = 0;
 
     // Percorre a lista1
     while (no_aux1 != NULL) {
@@ -574,5 +578,43 @@ int listas_iguais(Lista_dupla *lista1, Lista_dupla *lista2)
 
     // Se chegou até aqui, todas as comparações foram bem-sucedidas e as listas são iguais
     printf("\nAs listas SAO IGUAIS, ou seja, possuem os mesmos elementos!!!\n\n");
+    return 0;
+}
+
+
+
+
+
+int retira_repeticoes(Lista_dupla *lista)
+{
+    // Verifica se a lista existe
+    if (lista == NULL) {
+        fprintf(stderr, "\nA lista nao existe!!!\n\n");
+        return -1;
+    }
+    
+    // Verifica se a lista está vazia
+    if (lista->inicio == NULL) {
+        fprintf(stderr, "\nA lista esta vazia!!!\n\n");
+        return -1;
+    }
+
+    No *no_aux = lista->inicio;
+    int found_same = 0; // verifica se houve alguma remoção
+
+    while (no_aux->prox != NULL) {
+        if (conta_aluno(lista, no_aux->dados.matricula) > 1) {
+            found_same = 1;
+            remove_aluno(lista, no_aux->dados.matricula);
+            break;
+        }
+        no_aux = no_aux->prox;
+    }
+
+    if (!found_same) {
+        printf("\nNao havia aluno repetido na lista!!!\n\n");
+        return 1;
+    }
+
     return 0;
 }

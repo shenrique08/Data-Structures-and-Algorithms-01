@@ -21,13 +21,14 @@ int main()
         printf("(5) -> Remover todos os alunos\n");
         printf("(6) -> Trocar alunos de posicao\n");
         printf("(7) -> Verificar se as listas contem os mesmos alunos: \n");
-        printf("(8) -> Sair\n\n");
+        printf("(8) -> Retirar todas as repeticoes: \n");
+        printf("(9) -> Sair\n\n");
 
         printf("Digite uma opcao: ");
         scanf("%c", &operando);
         getchar();
 
-        if (operando == '8') {
+        if (operando == '9') {
             printf("\nPrograma encerrado!\n\n");
             break;
         }
@@ -52,6 +53,13 @@ int main()
                 dados_aluno.nota = 39.8;
 
                 insere_final(lista_dupla, dados_aluno);
+
+                strcpy(dados_aluno.nome, "Lazaro");
+                dados_aluno.matricula = 53456;
+                dados_aluno.nota = 87.1;
+
+                insere_final(lista_dupla, dados_aluno);
+
                 printf("\n================== [LISTA 1] DE ALUNOS CADASTRADOS ====================\n\n");
                 imprime(lista_dupla);
 
@@ -75,6 +83,13 @@ int main()
                 dados_aluno2.nota = 39.8;
 
                 insere_final(lista_dupla2, dados_aluno2);
+
+                strcpy(dados_aluno2.nome, "Geova");
+                dados_aluno2.matricula = 64567;
+                dados_aluno2.nota = 39.8;
+
+                insere_final(lista_dupla2, dados_aluno2);
+
                 printf("\n\n======================== [LISTA 2] DE ALUNOS ===============================\n\n");
                 imprime(lista_dupla2);
 
@@ -107,6 +122,7 @@ int main()
                 printf("Digite as duas posicoes que deseja realizar a troca: ");
                 scanf("%d %d", &pos_aluno1, &pos_aluno2);
                 fflush(stdin);
+                
                 troca_aluno(lista_dupla, pos_aluno1, pos_aluno2);
                 printf("\n========== LISTA APOS TROCA DE ALUNOS ==========\n\n");
                 imprime(lista_dupla);
@@ -115,17 +131,30 @@ int main()
             case '7':
                 listas_iguais(lista_dupla, lista_dupla2);
                 break;
+            case '8':;
+                int lista_retirar;
+                printf("\nDe qual lista deseja retirar as repeticoes?\n(1) -> lista [1]\n(2) -> lista [2]\n ");
+                scanf("%d", &lista_retirar);
+                fflush(stdin);
+
+                if (lista_retirar == 1) {
+                    retira_repeticoes(lista_dupla);
+                    printf("\n=============== Lista apos remocao das repeticoes ================\n\n");
+                    imprime(lista_dupla);
+                }
+                else if (lista_retirar == 2) {
+                    retira_repeticoes(lista_dupla2);
+                    printf("\n=============== Lista apos remocao das repeticoes ================\n\n");
+                    imprime(lista_dupla2);
+                }
+                break;
+                
             default:
                 printf("\nErro!!! Digite uma opcao valida.\n\n");
                 break;
-
         }
 
-
-
-    } while (operando != '8');
-
-
+    } while (operando != '9');
 
 
     return 0;

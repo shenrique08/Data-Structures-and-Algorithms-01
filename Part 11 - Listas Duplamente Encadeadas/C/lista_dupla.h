@@ -33,4 +33,6 @@ int remove_pos(Lista_dupla *lista, int pos);
 int aluno_maior_nota(Lista_dupla *lista);
 int troca_aluno(Lista_dupla *lista, int pos1, int pos2);
 int conta_aluno(Lista_dupla *lista, int matricula);
+
 int listas_iguais(Lista_dupla *lista1, Lista_dupla *lista2);
+int retira_repeticoes(Lista_dupla *lista);
