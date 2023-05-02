@@ -580,3 +580,41 @@ int listas_iguais(Lista_dupla *lista1, Lista_dupla *lista2)
     printf("\nAs listas SAO IGUAIS, ou seja, possuem os mesmos elementos!!!\n\n");
     return 0;
 }
+
+
+
+
+
+int retira_repeticoes(Lista_dupla *lista)
+{
+    // Verifica se a lista existe
+    if (lista == NULL) {
+        fprintf(stderr, "\nA lista nao existe!!!\n\n");
+        return -1;
+    }
+    
+    // Verifica se a lista está vazia
+    if (lista->inicio == NULL) {
+        fprintf(stderr, "\nA lista esta vazia!!!\n\n");
+        return -1;
+    }
+
+    No *no_aux = lista->inicio;
+    int found_same = 0; // verifica se houve alguma remoção
+
+    while (no_aux->prox != NULL) {
+        if (conta_aluno(lista, no_aux->dados.matricula) > 1) {
+            found_same = 1;
+            remove_aluno(lista, no_aux->dados.matricula);
+            break;
+        }
+        no_aux = no_aux->prox;
+    }
+
+    if (!found_same) {
+        printf("\nNao havia aluno repetido na lista!!!\n\n");
+        return 1;
+    }
+
+    return 0;
+}
