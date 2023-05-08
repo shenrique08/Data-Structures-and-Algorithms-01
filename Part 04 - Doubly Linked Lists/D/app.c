@@ -99,7 +99,8 @@ int main()
                 int mat_remocao;
                 printf("\nInforme a matricula do aluno que deseja remover: ");
                 scanf("%d", &mat_remocao);
-
+                getchar();
+                
                 remove_aluno(lista_dupla, mat_remocao);
                 printf("\n========== LISTA APOS A REMOCAO =========\n\n");
                 imprime(lista_dupla);

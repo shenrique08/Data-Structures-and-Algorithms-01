@@ -1,11 +1,11 @@
 
 
+
 typedef struct aluno
 {
     char nome[50];
     int matricula;
     float nota;
-
 
 } Aluno;
 
@@ -14,11 +14,12 @@ typedef struct lista Lista_dupla;
 
 
 Lista_dupla *criar_lista();
+
 void remover_alunos(Lista_dupla *lista);
 int lista_vazia(Lista_dupla *lista);
 int tam_lista(Lista_dupla *lista);
 
-void imprime(Lista_dupla *lista);
+int imprime(Lista_dupla *lista);
 
 int insere_inicio(Lista_dupla *lista, Aluno aluno);
 int insere_final(Lista_dupla *lista, Aluno aluno);

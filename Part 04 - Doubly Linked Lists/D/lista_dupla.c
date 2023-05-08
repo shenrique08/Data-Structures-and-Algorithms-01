@@ -71,15 +71,15 @@ int tam_lista(Lista_dupla *lista)
 
 
 
-void imprime(Lista_dupla *lista)
+int imprime(Lista_dupla *lista)
 {
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     if (lista_vazia(lista) == 1) {
         fprintf(stderr, "\nA lista esta vazia!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
     No *aux = lista->inicio;
@@ -91,6 +91,8 @@ void imprime(Lista_dupla *lista)
 
         aux = aux->prox;
     }
+
+    return 0;
 }
 
 
@@ -139,6 +141,7 @@ int insere_final(Lista_dupla *lista, Aluno aluno)
     // criando o nó a ser inserido
     No *novo_no = (No *) calloc(1, sizeof(No));
     novo_no->dados = aluno;
+
     novo_no->prox = NULL;
     novo_no->ant = ultimo_no; // o nó anterior do novo nó apontará para o que, anteriormente, era o último nó
     ultimo_no->prox = novo_no; // o nó prox do que antes era o último nó, agora apontará para o nó inserido
@@ -154,7 +157,7 @@ int inserir_pos(Lista_dupla *lista, Aluno aluno, int pos)
     // Verifica se a lista existe
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     // Verifica se a lista está vazia
@@ -206,7 +209,7 @@ int insere_ordenado(Lista_dupla *lista, Aluno aluno)
     // Verifica se a lista existe
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     // Verifica se a lista está vazia
@@ -244,13 +247,13 @@ int remove_inicio(Lista_dupla *lista)
     // Verifica se a lista existe
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     // Verifica se a lista está vazia
     if (lista_vazia(lista) == 1) {
         fprintf(stderr, "\nA lista esta vazia!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
     // Cria um ponteiro auxiliar para o nó inicial da lista
@@ -280,13 +283,13 @@ int remove_final(Lista_dupla *lista)
     // Verifica se a lista existe
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     // Verifica se a lista está vazia
     if (lista_vazia(lista) == 1) {
         fprintf(stderr, "\nA lista esta vazia!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
     No *no_aux = lista->inicio;
@@ -313,13 +316,13 @@ int remove_pos(Lista_dupla *lista, int pos)
     // Verifica se a lista existe
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     // Verifica se a lista está vazia
     if (lista_vazia(lista) == 1) {
         fprintf(stderr, "\nA lista esta vazia!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
     int tamanho_lista = tam_lista(lista);
@@ -501,13 +504,13 @@ int conta_aluno(Lista_dupla *lista, int matricula)
     // Verifica se a lista existe
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     // Verifica se a lista está vazia
     if (lista->inicio == NULL) {
         fprintf(stderr, "\nA lista esta vazia!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
 
