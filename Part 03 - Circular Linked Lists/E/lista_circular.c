@@ -108,8 +108,6 @@ int imprime_lista(Lista_Circular *lista)
 
 
 // Função para inserir um elemento no início de uma lista circular encadeada
-// Recebe como parâmetros um ponteiro para a lista circular e uma estrutura Aluno
-// Retorna 0 se a operação for bem-sucedida, ou -1 caso contrário
 int inserir_inicio(Lista_Circular *lista, Aluno aluno)
 {
     // Verifica se a lista passada como parâmetro é nula
@@ -141,7 +139,6 @@ int inserir_inicio(Lista_Circular *lista, Aluno aluno)
     // O ponteiro inicio da lista é atualizado para apontar para o novo nó inserido, concluindo a operação
     lista->inicio = novo; 
 
-    // Retorna 0 para indicar que a operação foi bem-sucedida
     return 0;
 }
 
@@ -376,11 +373,11 @@ Lista_Circular *intersection(Lista_Circular *lista1, Lista_Circular *lista2)
 {
     if (lista1 == NULL || lista2 == NULL) {
         fprintf(stderr, "As listas nao existem!!!\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     if (lista_vazia(lista1) == 1 || lista_vazia(lista2) == 1) {
         fprintf(stderr, "As listas estao vazias!!!\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
     Lista_Circular *lista3 = cria_lista();
@@ -444,7 +441,6 @@ int conta_ocorrencias(Lista_Circular *lista, Aluno aluno)
     } while (aux != lista->inicio);
 
     return ocorrencias;
-
 }
 
 

@@ -121,7 +121,7 @@ int inserir_pos(Lista *lista, Aluno aluno, int pos)
     int p = 1;
 
     while ((noLista->prox != NULL) && (p != pos)) {
-        p ++;
+        p++;
         noLista = noLista->prox;
     }
 
@@ -205,7 +205,7 @@ int remover_pos(Lista *lista, int pos)
     if (lista_vazia(lista) == 1)
         return 1;
     // posição inválida
-    if (pos < 0 || pos>= tam_lista(lista))
+    if (pos < 0 || pos >= tam_lista(lista))
         return 3;
 
     No *anterior = NULL; // este é o nó auxiliar anterior ao atual 
