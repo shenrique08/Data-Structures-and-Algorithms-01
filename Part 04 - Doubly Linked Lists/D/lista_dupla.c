@@ -101,8 +101,10 @@ int imprime(Lista_dupla *lista)
 int insere_inicio(Lista_dupla *lista, Aluno aluno)
 {
     // Verifica se a lista existe
-    if (lista == NULL)
-        return 2;
+    if (lista == NULL) {
+        fprintf(stderr, "\nA lista nao existe!!!\n\n");
+        return -1;
+    }
 
     // Cria um novo nó, que será inserido no início da lista
     No *novo_no = (No *) calloc(1, sizeof(No));
@@ -128,7 +130,10 @@ int insere_inicio(Lista_dupla *lista, Aluno aluno)
 
 int insere_final(Lista_dupla *lista, Aluno aluno)
 {
-    if (lista == NULL) return 2;
+    if (lista == NULL) {
+        fprintf(stderr, "\nA lista nao existe!!!\n\n");
+        return -1;
+    }
 
     if (lista_vazia(lista) == 1)
         return insere_inicio(lista, aluno);
@@ -225,7 +230,7 @@ int insere_ordenado(Lista_dupla *lista, Aluno aluno)
     No *aux = lista->inicio;
     int posicao = 1; // vai ser a posição em que vou inserir o aluno
     // percorrendo a lista até encontrar o primeiro número de matrícula que seja maior do que o nº que desejo inserir
-    while (((aux->dados.matricula) < (aluno.matricula)) && (aux->prox != NULL)) {
+    while (((aux->dados.matricula) < (aluno.matricula)) && (aux != NULL)) {
         posicao += 1;
         aux = aux->prox;
     } // ao final do looping chegarei à posição desejada
@@ -267,7 +272,7 @@ int remove_inicio(Lista_dupla *lista)
         // Se houver mais de um elemento na lista, atualiza o início para o próximo nó
         lista->inicio = lista->inicio->prox;
         // Define o ponteiro anterior do novo nó inicial como nulo, pois é o novo início da lista
-        lista->inicio->ant = NULL;
+        lista->inicio->prox->ant = NULL;
     }
 
     free(no_aux);
@@ -325,14 +330,12 @@ int remove_pos(Lista_dupla *lista, int pos)
         return -1;
     }
 
-    int tamanho_lista = tam_lista(lista);
-
     // Se a posição for a primeira, chama a função remove_inicio
     if (pos == 1)
         return remove_inicio(lista);
     // Se a posição for a última, chama a função remove_final
-    else if (pos == tamanho_lista)
-        remove_final(lista);
+    else if (pos == tam_lista(lista))
+        return remove_final(lista);
     else {
         No *no_atual = lista->inicio;
         int i = 1;
@@ -362,23 +365,18 @@ int remove_aluno(Lista_dupla *lista, int matricula)
     // Verifica se a lista existe
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     // Verifica se a lista está vazia
     if (lista_vazia(lista) == 1) {
         fprintf(stderr, "\nA lista esta vazia!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
 
     No *aux = lista->inicio;
-    int tamanho_lista = tam_lista(lista);
     int pos_remocao = 1;
-
-    if (tamanho_lista == 1)
-        return remove_inicio(lista);
-    
     
     while ((aux->prox != NULL) && (aux->dados.matricula != matricula)) {
         aux = aux->prox;
@@ -398,17 +396,18 @@ int aluno_maior_nota(Lista_dupla *lista)
     // Verifica se a lista existe
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     // Verifica se a lista está vazia
     if (lista->inicio == NULL) {
         fprintf(stderr, "\nA lista esta vazia!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     No *no_aluno = lista->inicio;
     
+    // caso a lista tenha apenas um elemento
     if (lista->inicio->prox == NULL) {
         printf("\nNome: [%s]\n", no_aluno->dados.nome);
         printf("Matricula: [%d]\n", no_aluno->dados.matricula);
@@ -416,9 +415,9 @@ int aluno_maior_nota(Lista_dupla *lista)
         return 0;
         
     } else {
-        int pos_maior_nota = 0;
+        int pos_maior_nota = 1;
         float maior_nota = no_aluno->dados.nota;
-        int pos_atual = 0;
+        int pos_atual = 1;
 
         // fazendo a busca pelo aluno de maior nota e guardando sua posição
         while (no_aluno != NULL) {
@@ -431,7 +430,7 @@ int aluno_maior_nota(Lista_dupla *lista)
         }
 
         // percorre até a posição do aluno de maior nota
-        int i = 0;
+        int i = 1;
         No *aluno_atual = lista->inicio;
         while (i < pos_maior_nota && aluno_atual != NULL) {
             aluno_atual = aluno_atual->prox;
@@ -456,18 +455,18 @@ int troca_aluno(Lista_dupla *lista, int pos1, int pos2)
     // Verifica se a lista existe
     if (lista == NULL) {
         fprintf(stderr, "\nA lista nao existe!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
     
     // Verifica se a lista está vazia
     if (lista->inicio == NULL) {
         fprintf(stderr, "\nA lista esta vazia!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
     if (tam_lista(lista) == 1) {
         fprintf(stderr, "\nA tem apenas 1 elemento!!!\n\n");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
     No *no1 = lista->inicio;
@@ -581,6 +580,7 @@ int listas_iguais(Lista_dupla *lista1, Lista_dupla *lista2)
 
     // Se chegou até aqui, todas as comparações foram bem-sucedidas e as listas são iguais
     printf("\nAs listas SAO IGUAIS, ou seja, possuem os mesmos elementos!!!\n\n");
+    
     return 0;
 }
 
