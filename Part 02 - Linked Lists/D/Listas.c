@@ -84,8 +84,8 @@ int inserir_no_fim(Lista *lista, Aluno aluno)
     No *no = (No *) calloc(1, sizeof(No));
 
     no->valor = aluno;
-    no->prox = noLista->prox;
     noLista->prox = no;
+    no->prox = NULL;
 
     return 0;
 }
@@ -94,6 +94,8 @@ int inserir_no_fim(Lista *lista, Aluno aluno)
 
 void imprime(const Lista *lista)
 {
+    if (lista == NULL) return 2;
+    if (lista_vazia(lista) == 1) return 3;
     No *noLista = lista->inicio;
 
 
@@ -127,8 +129,8 @@ int inserir_pos(Lista *lista, Aluno aluno, int pos)
 
     No *no = (No*) malloc(sizeof(No));
     no->valor = aluno;
-    no->prox = noLista->prox;
     noLista->prox = no;
+    no->prox = noLista->prox;
 
     return 0;
 }
