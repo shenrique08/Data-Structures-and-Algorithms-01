@@ -283,7 +283,7 @@ int remove_pos(Lista *lista, int pos)
         return remove_inicio(lista);
     // Se a posição for a última, chama a função remove_final
     else if (pos == tamanho_lista)
-        remove_final(lista);
+        return remove_final(lista);
     else {
         No *no_ant = NULL;
         No *no_atual = (*lista);
@@ -384,34 +384,35 @@ int maior_valor(Lista *lista)
     
     No *no = (*lista);
     
+    // caso a lista tenha apenas um elemento
     if (no->prox == NULL) {
         printf("\nMaior valor: [%d]\n\n", no->valor);
         return 0;
         
     } else {
         int pos_maior_valor = 0;
-        float maior_nota = no->valor;
+        float maior_valor = no->valor;
         int pos_atual = 0;
 
         while (no != NULL) {
-            if (no->valor > maior_nota) {
-                maior_nota = no->valor;
+            if (no->valor > maior_valor) {
+                maior_valor = no->valor;
                 pos_maior_valor = pos_atual;
             }
             no = no->prox;
             pos_atual++;
         }
 
-        // percorre até a posição do aluno de maior nota
+        // percorre até a posição de maior valor
         int i = 0;
-        No *aluno_atual = (*lista);
-        while (i < pos_maior_valor && aluno_atual != NULL) {
-            aluno_atual = aluno_atual->prox;
+        No *no_atual = (*lista);
+        while (i < pos_maior_valor && no_atual != NULL) {
+            no_atual = no_atual->prox;
             i++;
         }
 
-        // neste momento, aluno_atual está no nó do aluno de maior nota
-        printf("\nMaior valor: [%d]\n\n", aluno_atual->valor);
+        // neste momento, no_atual está no nó do maior valor
+        printf("\nMaior valor: [%d]\n\n", no_atual->valor);
         
         return 0;
     }
