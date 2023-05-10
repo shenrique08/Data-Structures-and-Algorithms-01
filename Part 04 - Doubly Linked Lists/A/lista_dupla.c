@@ -84,7 +84,7 @@ void imprime(Lista_dupla *lista)
 
     No *aux = lista->inicio;
 
-    while (aux != NULL) {
+    while (aux != NULL) { // tem de ser aux != NULL, uma vez que se fosse aux->prox == NULL, então "furaria" o while. Assim, o último nó não seria impresso
         printf("\nMatricula: [%d]\n", aux->dados.matricula);
         printf("\nNome: [%s]\n", aux->dados.nome);
         printf("\nNota: [%.3f]\n\n", aux->dados.nota);

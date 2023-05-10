@@ -13,10 +13,12 @@ int main()
     insere_final(lista, 99);
     inserir_pos(lista, 34, 2);
     inserir_pos(lista, 78, 4);
+    /*
     insere_ordenado(lista, 5);
     insere_ordenado(lista, 28);
     insere_final(lista, 99);
     insere_final(lista, 99);
+    */
     printf("\n========== LISTA APOS AS INSERCOES ============\n\n");
     imprime(lista);
 
