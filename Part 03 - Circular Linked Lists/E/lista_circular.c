@@ -198,7 +198,7 @@ int remover_inicio(Lista_Circular *lista)
 
     No *temp = lista->inicio; // armazena o primeiro elemeto da estrutura de dados em um nó temporário
     no->prox = temp->prox; // o ponteiro do último elemento agora apontará para o segundo elemento, que é temp->prox
-    lista->inicio = temp->prox; // o segundo elemento agora será o primeiro
+    lista->inicio = temp->prox; // O início da lista agora aponta para o, anteriormente, segundo elemento
 
     // libera memória do primeiro elemento, que tinha sido armazenado em temp
     free(temp);
