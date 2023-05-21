@@ -101,6 +101,7 @@ int cadastrar_paciente(Fila *fila, Paciente paciente, int qtd_cadastro)
     if (fila == NULL)
         return -1;
 
+    // será o novo paciente
     No *novo_no = (No*) calloc(1, sizeof(No));
     novo_no->dados = paciente;
     printf("\n=============== SISTEMA DE CADASTRO ===============\n");
@@ -131,7 +132,7 @@ int remover(Fila *fila, Paciente *paciente_removido)
         return -2;
     
     No *no_aux = fila->inicio;
-    *paciente_removido = no_aux->dados;
+    *paciente_removido = no_aux->dados; // como a remoção sempre acontece no início da fila, este será o elemento retornado
     // o início agora apontará para, anteriormente, segundo elemento
     fila->inicio = no_aux->prox;
     free(no_aux);
