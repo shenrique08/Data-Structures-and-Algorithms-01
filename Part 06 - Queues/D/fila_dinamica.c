@@ -105,13 +105,13 @@ int cadastrar_paciente(Fila *fila, Paciente paciente, int qtd_cadastro)
     No *novo_no = (No*) calloc(1, sizeof(No));
     novo_no->dados = paciente;
     printf("\n=============== SISTEMA DE CADASTRO ===============\n");
-    if (qtd_cadastro > 1) {
+    if (qtd_cadastro >= 1) {
         for (int i = 0; i < qtd_cadastro; i++) {
             printf("\nInforme o NOME do [%do] paciente: ", i + 1);
             fgets(novo_no->dados.nome, sizeof(novo_no->dados.nome), stdin);
 
-            printf("Informe o CPF do    [%do] paciente: ", i + 1);
-            fgets(novo_no->dados.cpf, sizeof(novo_no->dados.cpf), stdin);
+            printf("Informe a SENHA do  [%do] paciente: ", i + 1);
+            fgets(novo_no->dados.senha, sizeof(novo_no->dados.senha), stdin);
 
             inserir(fila, novo_no->dados);
         }
@@ -156,39 +156,9 @@ void mostrar(Fila *f)
         No *no = f->inicio;
         while (no != NULL) {
             printf("\nNOME: %s ",no->dados.nome);
-            printf("CPF: %s \n",no->dados.cpf);
+            printf("Senha: %s \n",no->dados.senha);
             
             no = no->prox;
         }
-        printf("\n");
     }
-}
-
-
-
-
-Fila *intercala(Fila *fila1, Fila *fila2)
-{
-    if (fila1 == NULL || fila2 == NULL)
-        return -1;
-    if (fila_vazia(fila1) == 1 && fila_vazia(fila2) == 1)
-        return -2;
-    
-    Fila *fila3 = criar_fila();
-
-    No *nolista1 = fila1->inicio;
-    No *nolista2 = fila2->inicio;
-    // inserindo os elementos da primeira fila na terceira fila, mantendo sua ordem
-    while (nolista1 != NULL) {
-        inserir(fila3, nolista1->dados);
-        nolista1 = nolista1->prox;
-    }
-
-    // agora, insere os elementos da segunda lista a partir do final da primeira lista
-    while(nolista2 != NULL) {
-        inserir(fila3, nolista2->dados);
-        nolista2 = nolista2->prox;
-    }
-
-    return fila3;
 }
