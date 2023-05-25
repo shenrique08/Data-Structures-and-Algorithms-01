@@ -3,4 +3,3 @@ bin.exe: $(wildcard *.c)
 
 run: bin.exe 
 	@$<
-	

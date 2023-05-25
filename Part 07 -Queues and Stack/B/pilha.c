@@ -130,3 +130,31 @@ int consultar_pilha(Pilha *pilha, int *valor_consultado)
 
     return 0;
 }
+
+
+
+
+// função que verifica se duas pilhas são iguais, ou seja, se possuem os mesmos elementos na mesma ordem
+int pilhas_iguais(Pilha *pilha1, Pilha *pilha2)
+{
+    if (pilha1 == NULL || pilha2 == NULL) 
+        return -1;
+
+    if (tamanho_pilha(pilha1) != tamanho_pilha(pilha2)) 
+        return 0; // as pilhas não são iguais, caso o tamanho seja diferente
+    int valor1, valor2; 
+    // looping que começa no topo da pilha, vai retirando os valores e comparando-os
+    for (int i = (pilha1->index_topo - 1); i >= 0; i--) {
+        pop(pilha1, &valor1);
+        pop(pilha2, &valor2);
+
+        // neste momento, tenho os dois valores do atual topo das duas pilhas
+        // então, basta compará-los
+        if (valor1 != valor2) 
+            return 0; // as pilhas não são iguais
+    }
+
+    return 1;
+
+    // agora, irei inserir os valores de volta nas pilhas, para que elas fiquem como estavam antes
+}
