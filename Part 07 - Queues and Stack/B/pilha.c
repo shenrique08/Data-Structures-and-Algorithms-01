@@ -109,7 +109,7 @@ void mostrar_pilha(Pilha *pilha)
         return;
 
     printf("[");
-    for (int i = 0; i < pilha->index_topo; i++) 
+    for (int i = (pilha->index_topo - 1); i >= 0 ; i--) 
         printf(" %3d", pilha->valores[i]);
     printf(" ]\n\n");
 }
