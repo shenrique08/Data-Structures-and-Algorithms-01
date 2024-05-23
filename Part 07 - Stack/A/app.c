@@ -22,7 +22,7 @@ int main()
     pop(pilha, &valor_removido[3]);
     pop(pilha, &valor_removido[4]);
 
-    mostrar_pilha(pilha);
+    mostrar_pilha(pilha);;;
 
     limpar_pilha(pilha);
 
